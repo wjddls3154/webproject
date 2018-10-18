@@ -36,12 +36,14 @@ studentService.createStudent(studentVO);
 
 }
 
+//create 부분 get , post 방식
+
 @RequestMapping("read") 
   	public void readList(Model model) throws Exception { 
   		model.addAttribute("items", studentService.readStudentList()); 
   	} 
 
-
+//read 부분 사용
 
 
 }

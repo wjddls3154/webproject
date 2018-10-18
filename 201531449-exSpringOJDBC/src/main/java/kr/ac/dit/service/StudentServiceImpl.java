@@ -20,11 +20,15 @@ public void createStudent(StudentVO studentVO) throws Exception {
 
 studentDAO.insertStudent(studentVO);
 
+//create.jsp의 insert 사용
+
 }
 
 public List<StudentVO> readStudentList() throws Exception { 
   		return studentDAO.selectStudentList(); 
   	} 
+
+//read.jsp의 select 사용
 
 
 }

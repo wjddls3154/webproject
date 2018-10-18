@@ -17,26 +17,18 @@ public class StudentDAOImpl implements StudentDAO {
 public void insertStudent(StudentVO studentVO) throws Exception {
 
 String no = studentVO.getNo();
-
 String name = studentVO.getName();
-
 Class.forName("oracle.jdbc.driver.OracleDriver");
-
 Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "201531449", "201531449");
-
 PreparedStatement pstmt = conn.prepareStatement("insert into student values(?,?)");
-
 pstmt.setString(1, no);
-
 pstmt.setString(2, name);
-
 pstmt.executeUpdate();
-
 pstmt.close();
-
 conn.close();
-
 }
+
+//insertStudent로 SQL insert 사용
 
 public List<StudentVO> selectStudentList() throws Exception { 
   		List<StudentVO> items = new ArrayList<StudentVO>(); 
@@ -56,5 +48,6 @@ public List<StudentVO> selectStudentList() throws Exception {
   		return items; 
   	} 
 
+//selectStudentList 로 SQL select 사용
 
 }

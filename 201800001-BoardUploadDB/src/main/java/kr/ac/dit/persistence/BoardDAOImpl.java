@@ -22,6 +22,13 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne("BoardMapper.select", no); 
 	}
 	@Override
+
+	public int selectMaxFileId() {
+
+	return sqlSession.selectOne("BoardMapper.selectMaxFileId");
+
+	}
+	@Override
 	public void update(BoardVO boardVO) throws Exception {
 		sqlSession.update("BoardMapper.update", boardVO);
 	}
@@ -34,4 +41,18 @@ public class BoardDAOImpl implements BoardDAO {
 		 sqlSession.insert("BoardMapper.insertFile", uploadFileVO);
 		
 	}
+	@Override
+
+	public List<UploadFileVO> selectAttachFile(int no) {
+
+	return sqlSession.selectList("BoardMapper.selectAttachFile", no);
+
+	}
+	@Override
+	public UploadFileVO selectDownloadFile(int fileId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("BoardMapper.selectDownloadFile", fileId);
+	}
+	
+	
 }

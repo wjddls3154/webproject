@@ -18,6 +18,15 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO readArticle(int no) throws Exception {
 		return boardDAO.select(no);
 	}
+	
+	@Override
+
+	public List<UploadFileVO> readAttachFile(int no) {
+
+	return boardDAO.selectAttachFile(no);
+
+	}
+	
 	public void updateArticle(BoardVO boardVO) throws Exception {
 		boardDAO.update(boardVO);
 	}
@@ -26,7 +35,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 	@Override
 	public void uploadFile(UploadFileVO uploadFileVO) {
-		  boardDAO.insertFile(uploadFileVO);
+		uploadFileVO.setFileId(boardDAO.selectMaxFileId()+1); 
+		boardDAO.insertFile(uploadFileVO);
 		
+	}
+	@Override
+
+	public UploadFileVO downloadFile(int fileId) {
+
+	return boardDAO.selectDownloadFile(fileId);
+
 	}
 }

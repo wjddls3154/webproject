@@ -2,21 +2,51 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardMapper">
+	
+	<insert id="insert">
+		insert into board (no, writer, title, content, createDate) values (board_seq.nextval, #{writer}, #{title}, #{content}, SYSDATE)
+	</insert>
+	 <insert id="insertFile">
+  insert into upload_file (file_id, file_name, file_data, no) values (#{fileId}, #{fileName}, #{fileData}, board_seq.currval)   <!-- 파일아이디는 아직없어서 안들어가고 name,data만 들어감  --> 
+ </insert>
+ <select id="selectMaxFileId" resultType="Integer">
+
+select NVL(max(file_id),0) from upload_file
+
+</select>
+	<select id="select" resultType="kr.ac.dit.domain.BoardVO">
+		select * from board where no = #{no}
+	</select>
 	<select id="selectList" resultType="kr.ac.dit.domain.BoardVO">
 		<![CDATA[
 		select * from board
 		order by no desc, createDate desc
 		]]>
 	</select>
-	<insert id="insert">
-		insert into board (no, writer, title, content, createDate) values (board_seq.nextval, #{writer}, #{title}, #{content}, SYSDATE)
-	</insert>
-	 <insert id="insertFile">
-  insert into upload_file (file_id, file_name, file_data) values (#{fileId}, #{fileName}, #{fileData})   <!-- 파일아이디는 아직없어서 안들어가고 name,data만 들어감  --> 
- </insert>
-	<select id="select" resultType="kr.ac.dit.domain.BoardVO">
-		select * from board where no = #{no}
-	</select>
+	<select id="selectAttachFile" resultType="kr.ac.dit.domain.UploadFileVO">
+
+select
+
+file_id as fileId,
+
+file_name as fileName
+
+from upload_file where no = #{no}
+
+</select>
+<select id="selectDownloadFile" resultType="kr.ac.dit.domain.UploadFileVO">
+
+select
+
+file_name as fileName,
+
+file_data as fileData
+
+from upload_file where file_id = #{fileId}
+
+</select>
+
+
 	<update id="update">
 		update board set title = #{title}, content = #{content} where no = #{no}
 	</update>

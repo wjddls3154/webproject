@@ -3,20 +3,21 @@ import java.sql.Timestamp;
 
 import org.springframework.web.multipart.MultipartFile;
 public class BoardVO {
-	private int no;
+	
 	private String writer;
 	private String title;
 	private String content;
 	private Timestamp createDate;
 	private int readCount;
-	private MultipartFile uploadFile;
+	private MultipartFile[] uploadFile;
+	private int no;
 	public int getNo() {
 		return no;
 	}
-	public MultipartFile getUploadFile() {
+	public MultipartFile[] getUploadFile() {
 		return uploadFile;
 	}
-	public void setUploadFile(MultipartFile uploadFile) {
+	public void setUploadFile(MultipartFile[] uploadFile) {
 		this.uploadFile = uploadFile;
 	}
 	public void setNo(int no) {

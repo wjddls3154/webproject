@@ -9,4 +9,7 @@ public interface BoardDAO {
 	public void update(BoardVO boardVO) throws Exception;
 	public void delete(int no) throws Exception;
 	public void insertFile(UploadFileVO uploadFileVO);
+	int selectMaxFileId();
+	public List<UploadFileVO> selectAttachFile(int no);
+	public UploadFileVO selectDownloadFile(int fileId);
 }

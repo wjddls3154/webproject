@@ -12,4 +12,6 @@ public interface BoardService {
 	public void updateArticle(BoardVO boardVO) throws Exception;
 	public void deleteArticle(int no) throws Exception;
 	public void uploadFile(UploadFileVO uploadFileVO);
+	public Object readAttachFile(int no);
+	UploadFileVO downloadFile(int fileId);
 }

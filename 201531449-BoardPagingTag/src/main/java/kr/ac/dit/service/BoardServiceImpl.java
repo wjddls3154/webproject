@@ -14,7 +14,7 @@ public class BoardServiceImpl implements BoardService {
 	 public List<BoardVO> listArticle(int page) throws Exception {
 
 	  int start = (page - 1) * 10; // 페이징 의 조건절에 사용되는 시작 rownum
-
+	  System.out.println("BoardServiceImpl->start(select 할 ROWNUM 시작값): " + start);
 	  return boardDAO.selectList(start, start+10);
 
 	 } 

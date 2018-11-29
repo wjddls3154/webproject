@@ -28,12 +28,15 @@ public class BoardController {
 
 	 @RequestMapping("/board/list/{page}")
 	  public String listGET(@PathVariable int page, Model model, HttpSession httpSession) throws Exception {
+		 System.out.println("BoardController->page(현재 페이지 번호): " + page);
 	   httpSession.setAttribute("page", page);
 	   List<BoardVO> boardList = boardService.listArticle(page);
 	   model.addAttribute("items", boardList);
 	   int totalCount = boardService.selectTotalArticleCount(); // 전체 게시물 개수
+	   System.out.println("BoardController->totalCount(총 게시물 수): " + totalCount);
 	  int totalPage = 0;
 	   if (totalCount>0) totalPage = (int)Math.ceil(totalCount/10.0); // 전체 페이지 개수
+	   System.out.println("BoardController->totalPage(총 페이지 수): " + totalPage);
 	  model.addAttribute("totalPageCount", totalPage);
 	   model.addAttribute("page", page);
 

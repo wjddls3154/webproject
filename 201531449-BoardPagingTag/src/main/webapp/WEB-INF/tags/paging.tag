@@ -4,8 +4,11 @@
  <%@ attribute name="nowPage" type="java.lang.Integer" required="true"%>
  <%
  int totalPageBlock = (int)(Math.ceil(totalPageCount/10.0));
+ System.out.println("paging->totalPageBlock(페이징 블록 개수): " + totalPageBlock);
  int nowPageBlock = (int) Math.ceil(nowPage/10.0);
+ System.out.println("paging->nowPageBlock(현재 페이징 블록 번호): " + nowPageBlock);
  int startPage = (nowPageBlock-1)*10 + 1;
+ System.out.println("paging->startPage(현재 블록의 출발 페이지 번호): " + startPage);
  int endPage = 0;
  String contextPath = application.getContextPath();
 
